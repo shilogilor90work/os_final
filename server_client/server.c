@@ -11,7 +11,7 @@ int main()
 {
   // print process id
   pid_t pid = getpid();
-  printf("pid: %d", pid);
+  printf("pid: %d\n", pid);
   // attach handler for SIGINT and SIGUSR1
   signal(SIGINT,handler_sigint);
   signal(SIGUSR1,handler_sigusr);
@@ -28,6 +28,6 @@ void handler_sigint(int signum)
 }
 void handler_sigusr()
 {
-    printf("SIGUSER1 recieved, and restarting the counter\n");
+    printf("SIGUSER1 recieved,global_counter = :%d , and restarting the counter\n", global_counter);
     global_counter = 0;
 }
