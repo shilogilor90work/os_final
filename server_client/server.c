@@ -16,7 +16,9 @@ int main()
   signal(SIGINT,handler_sigint);
   signal(SIGUSR1,handler_sigusr);
   // to keep process alive
-  while(1){};
+  while(1){
+    sleep(1);
+  }
   return(0);
 }
 
