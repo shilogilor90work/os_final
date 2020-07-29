@@ -24,7 +24,7 @@ int main()
 void handler_sigint(int signum)
 {
   ++global_counter;
-    printf("SIGINT recieved from :%d\n", signum);
+    // printf("SIGINT recieved from :%d\n", signum);
 }
 void handler_sigusr()
 {
