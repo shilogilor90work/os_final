@@ -3,38 +3,31 @@
 #include <signal.h>
 
 
-void handler_function(int);
-void handler_function2(int);
+void handler_sigint(int);
+void handler_sigusr();
 int global_counter = 0;
 
 int main()
 {
+  // print process id
   pid_t pid = getpid();
-
- printf("pid: %d", pid);
-    /*
-     * attach handler for SIGINT
-     */
-
-    signal(SIGINT,handler_function);
-    signal(SIGUSR1,handler_function2);
-
-    while(1)
-    {
-        printf("Program executing (1s delay between updates)...\n");
-        sleep(1);
-    }
-
-    return(0);
+  printf("pid: %d", pid);
+  // attach handler for SIGINT and SIGUSR1
+  signal(SIGINT,handler_sigint);
+  signal(SIGUSR1,handler_sigusr);
+  // to keep process alive
+  while(1){};
+  return(0);
 }
 
 
-void handler_function(int signum)
+void handler_sigint(int signum)
 {
   ++global_counter;
-    printf(">>> Caught signal: %d; executing handler <<<\n", signum);
+    printf("SIGINT recieved from :\n", signum);
 }
-void handler_function2(int signum)
+void handler_sigusr()
 {
-    printf(">>> counter: %d\n", global_counter);
+    printf("SIGUSER1 recieved, and restarting the counter\n");
+    global_counter = 0;
 }
