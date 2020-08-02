@@ -29,7 +29,9 @@ struct sched_attr {
  }
 
  int main(int argc, char* argv[]) {
-
+   // print process id
+   pid_t pid = getpid();
+   printf("pid: %d\n", pid);
      struct sched_attr attr = {
          // .size = sizeof(attr),
          .sched_policy = atoi(argv[1]),
