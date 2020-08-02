@@ -38,7 +38,7 @@ struct sched_attr {
    printf("pid: %d\n", pid);
    struct sched_attr attr = {
         .size = sizeof(attr),
-        .sched_policy = argv[1],
+        .sched_policy = atoi(argv[1]),
         .sched_runtime = 30000000,
         .sched_period = 100000000,
         .sched_deadline = 100000000
