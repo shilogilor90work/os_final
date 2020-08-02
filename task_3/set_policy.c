@@ -47,8 +47,6 @@ struct sched_attr {
          .sched_priority = atoi(argv[2])
      };
 
-     // pid_t tid = syscall(SYS_gettid);
-
      if (sched_setattr(pid, &attr, 0))
          perror("sched_setattr()");
      while(1){};
