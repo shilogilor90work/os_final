@@ -43,18 +43,18 @@ struct sched_attr {
    printf("SCHED_IDLE: %d\n", SCHED_IDLE);
    printf("SCHED_DEADLINE: %d\n", SCHED_DEADLINE);
 
-   struct sched_attr attr = {
-        .size = sizeof(attr),
-        .sched_policy = atoi(argv[1]),
-        .sched_runtime = 30000000,
-        .sched_period = 100000000,
-        .sched_deadline = 100000000
-    };
-     // struct sched_attr attr = {
-     //     // .size = sizeof(attr),
-     //     .sched_policy = atoi(argv[1]),
-     //     .sched_priority = atoi(argv[2])
-     // };
+   // struct sched_attr attr = {
+   //      .size = sizeof(attr),
+   //      .sched_policy = atoi(argv[1]),
+   //      .sched_runtime = 30000000,
+   //      .sched_period = 100000000,
+   //      .sched_deadline = 100000000
+   //  };
+     struct sched_attr attr = {
+         // .size = sizeof(attr),
+         .sched_policy = atoi(argv[1]),
+         .sched_priority = atoi(argv[2])
+     };
 
      pid_t tid = syscall(SYS_gettid);
 
