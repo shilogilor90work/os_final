@@ -18,7 +18,7 @@ int main(int argc,char* argv[])
       int policy = atoi(argv[1]);
       int pid = atoi(argv[2]);
 
-      sched_setsched(policy, pid, &sp);
+      sched_setscheduler(policy, pid, &sp);
       // switch (argv[1])
       // ​{
       //     case DEADLINE_SCHED:
