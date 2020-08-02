@@ -9,23 +9,23 @@
 #include <linux/sched.h>
 #include <sys/types.h>
 // https://man7.org/linux/man-pages/man2/sched_setattr.2.html
-// struct sched_attr {
-//     uint32_t size;
-//
-//     uint32_t sched_policy;
-//     uint64_t sched_flags;
-//
-//     /* SCHED_NORMAL, SCHED_BATCH */
-//     int32_t sched_nice;
-//
-//     /* SCHED_FIFO, SCHED_RR */
-//     uint32_t sched_priority;
-//
-//     /* SCHED_DEADLINE (nsec) */
-//     uint64_t sched_runtime;
-//     uint64_t sched_deadline;
-//     uint64_t sched_period;
-// };
+struct sched_attr {
+    uint32_t size;
+
+    uint32_t sched_policy;
+    uint64_t sched_flags;
+
+    /* SCHED_NORMAL, SCHED_BATCH */
+    int32_t sched_nice;
+
+    /* SCHED_FIFO, SCHED_RR */
+    uint32_t sched_priority;
+
+    /* SCHED_DEADLINE (nsec) */
+    uint64_t sched_runtime;
+    uint64_t sched_deadline;
+    uint64_t sched_period;
+};
 // SCHED_OTHER : 0
 // SCHED_FIFO : 1
 // SCHED_RR : 2
