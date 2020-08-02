@@ -36,6 +36,13 @@ struct sched_attr {
    // print process id
    pid_t pid = getpid();
    printf("pid: %d\n", pid);
+   printf("SCHED_OTHER: %d\n", SCHED_OTHER);
+   printf("SCHED_FIFO: %d\n", SCHED_FIFO);
+   printf("SCHED_RR: %d\n", SCHED_RR);
+   printf("SCHED_BATCH: %d\n", SCHED_BATCH);
+   printf("SCHED_IDLE: %d\n", SCHED_IDLE);
+   printf("SCHED_DEADLINE: %d\n", SCHED_DEADLINE);
+
    struct sched_attr attr = {
         .size = sizeof(attr),
         .sched_policy = atoi(argv[1]),
