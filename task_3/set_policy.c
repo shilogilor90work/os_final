@@ -10,17 +10,17 @@
 #include <sys/types.h>
 // https://man7.org/linux/man-pages/man2/sched_setattr.2.html
 struct sched_attr {
-               u32 size;              /* Size of this structure */
-               u32 sched_policy;      /* Policy (SCHED_*) */
-               u64 sched_flags;       /* Flags */
-               s32 sched_nice;        /* Nice value (SCHED_OTHER,
+               uint32_t size;              /* Size of this structure */
+               uint32_t sched_policy;      /* Policy (SCHED_*) */
+               uint64_t sched_flags;       /* Flags */
+               long sched_nice;        /* Nice value (SCHED_OTHER,
                                          SCHED_BATCH) */
-               u32 sched_priority;    /* Static priority (SCHED_FIFO,
+               uint32_t sched_priority;    /* Static priority (SCHED_FIFO,
                                          SCHED_RR) */
                /* Remaining fields are for SCHED_DEADLINE */
-               u64 sched_runtime;
-               u64 sched_deadline;
-               u64 sched_period;
+               uint64_t sched_runtime;
+               uint64_t sched_deadline;
+               uint64_t sched_period;
            };
 
  int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
