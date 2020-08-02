@@ -49,7 +49,7 @@ struct sched_attr {
 
      // if (sched_setattr(pid, &attr, 0))
      //     perror("sched_setattr()");
-     sched_setscheduler(0, atoi(argv[1]), &attr)
+     sched_setscheduler(0, atoi(argv[1]), &attr);
      while(1){};
      return 0;
  }
