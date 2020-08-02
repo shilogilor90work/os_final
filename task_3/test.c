@@ -27,19 +27,19 @@ struct sched_attr {
     uint64_t sched_period;
 };
 
-struct sched_param {
-    int32_t  sched_priority;
-    int32_t  sched_curpriority;
-    union {
-        int32_t  reserved[8];
-        struct {
-            int32_t  __ss_low_priority;
-            int32_t  __ss_max_repl;
-            struct timespec     __ss_repl_period;
-            struct timespec     __ss_init_budget;
-        }           __ss;
-    }           __ss_un;
-}
+// struct sched_param {
+//     int32_t  sched_priority;
+//     int32_t  sched_curpriority;
+//     union {
+//         int32_t  reserved[8];
+//         struct {
+//             int32_t  __ss_low_priority;
+//             int32_t  __ss_max_repl;
+//             struct timespec     __ss_repl_period;
+//             struct timespec     __ss_init_budget;
+//         }           __ss;
+//     }           __ss_un;
+// }
 // SCHED_OTHER : 0
 // SCHED_FIFO : 1
 // SCHED_RR : 2
@@ -56,7 +56,7 @@ struct sched_param {
    pid_t pid = getpid();
    printf("pid: %d\n", pid);
 
-     struct sched_param attr = {
+     const struct sched_param attr = {
          // .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
