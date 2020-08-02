@@ -9,47 +9,6 @@
 #include <linux/sched.h>
 #include <sys/types.h>
 // https://man7.org/linux/man-pages/man2/sched_setattr.2.html
-struct sched_attr {
-    uint32_t size;
-
-    uint32_t sched_policy;
-    uint64_t sched_flags;
-
-    /* SCHED_NORMAL, SCHED_BATCH */
-    int32_t sched_nice;
-
-    /* SCHED_FIFO, SCHED_RR */
-    uint32_t sched_priority;
-
-    /* SCHED_DEADLINE (nsec) */
-    uint64_t sched_runtime;
-    uint64_t sched_deadline;
-    uint64_t sched_period;
-};
-
-// struct sched_param {
-//     int32_t  sched_priority;
-//     int32_t  sched_curpriority;
-//     union {
-//         int32_t  reserved[8];
-//         struct {
-//             int32_t  __ss_low_priority;
-//             int32_t  __ss_max_repl;
-//             struct timespec     __ss_repl_period;
-//             struct timespec     __ss_init_budget;
-//         }           __ss;
-//     }           __ss_un;
-// }
-// SCHED_OTHER : 0
-// SCHED_FIFO : 1
-// SCHED_RR : 2
-// SCHED_BATCH : 4
-// SCHED_IDLE : 5
-// SCHED_DEADLINE : 6
- // int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
- // {
- //    return syscall(__NR_sched_setattr, pid, attr, flags);
- // }
 
  int main(int argc, char* argv[]) {
    // print process id
@@ -57,12 +16,9 @@ struct sched_attr {
    printf("pid: %d\n", pid);
 
      const struct sched_param attr = {
-         // .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
 
-     // if (sched_setattr(pid, &attr, 0))
-     //     perror("sched_setattr()");
      sched_setscheduler(0, atoi(argv[1]), &attr);
      while(1){};
      return 0;
