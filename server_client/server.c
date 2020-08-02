@@ -30,6 +30,6 @@ void handler_sigint(int signum)
 }
 void handler_sigusr()
 {
-    printf("SIGUSER1 recieved,global_counter = :%d , and restarting the counter\n", global_counter);
+    printf("SIGUSER1 recieved, global_counter = :%d , and restarting the counter\n", global_counter);
     global_counter = 0;
 }
