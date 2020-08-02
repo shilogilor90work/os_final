@@ -1,17 +1,24 @@
+// #include <sys/types.h>
 #include <sched.h>
 #include <stdio.h>
-
+// #include <sys/time.h>
+// #include <sys/resource.h>
 
 int main(int argc,char* argv[])
 {
   int status;
   // if missing argument
+
     if(argc<3)
         printf("please enter the process id and priorty...\n");
     // if argument exists
     if(argc>=3)
     {
-      sched_setscheduler( argv[2], argv[1], NULL)
+      struct sched_param sp;
+      int policy = atoi(argv[1]);
+      int pid = atoi(argv[2]);
+
+      sched_setsched(policy, pid, &sp);
       // switch (argv[1])
       // ​{
       //     case DEADLINE_SCHED:
