@@ -31,7 +31,7 @@ struct sched_attr {
  int main(int argc, char* argv[]) {
 
      struct sched_attr attr = {
-         .size = sizeof(attr),
+         // .size = sizeof(attr),
          .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
@@ -40,6 +40,6 @@ struct sched_attr {
 
      if (sched_setattr(tid, &attr, 0))
          perror("sched_setattr()");
-
+     while(1){};
      return 0;
  }
