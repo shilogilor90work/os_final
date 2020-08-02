@@ -20,6 +20,8 @@
      };
 
      sched_setscheduler(0, atoi(argv[1]), &attr);
-     while(1){};
+     while(1){
+       sleep(1);
+     };
      return 0;
  }
