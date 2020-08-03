@@ -16,15 +16,15 @@ int main(int argc,char* argv[])
       if (status != 0){
         // no permission warning
         if (errno == EPERM) {
-           printf("Process %d exists but we have no permission.", atoi(argv[1]));
+           printf("Process %d exists but we have no permission.\n", atoi(argv[1]));
         }
         // if process does not exist
         else if (errno == ESRCH) {
-          printf("Process %d does not exist", atoi(argv[1]));
+          printf("Process %d does not exist\n", atoi(argv[1]));
         }
         // if process exists
       } else {
-        printf("Process %d exists.", atoi(argv[1]));
+        printf("Process %d exists.\n", atoi(argv[1]));
       }
     }
     return 0;
