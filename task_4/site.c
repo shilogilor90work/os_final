@@ -4,11 +4,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+
+
 
 static int
 display_info(const char *fpath, const struct stat *sb,
              int tflag, struct FTW *ftwbuf)
 {
+  struct stat sb;
+  if (stat(fpath, &sb) == -1) {
+        perror("stat");
+        exit(EXIT_FAILURE);
+    }
     printf("%-3s %2d %7jd   %-40s %d %s\n",
         (tflag == FTW_D) ?   "d"   : (tflag == FTW_DNR) ? "dnr" :
         (tflag == FTW_DP) ?  "dp"  : (tflag == FTW_F) ?   "f" :
@@ -16,6 +26,7 @@ display_info(const char *fpath, const struct stat *sb,
         (tflag == FTW_SLN) ? "sln" : "???",
         ftwbuf->level, (intmax_t) sb->st_size,
         fpath, ftwbuf->base, fpath + ftwbuf->base);
+    printf("I-node number:            %ld\n", (long) sb.st_ino);
     return 0;           /* To tell nftw() to continue */
 }
 
