@@ -1,7 +1,7 @@
 // imports
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <sched.h>
+#include <unistd.h>
 struct sched_attr {
     uint32_t size;
 
