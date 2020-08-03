@@ -19,7 +19,7 @@ display_info(const char *fpath, const struct stat *sb,
         perror("stat");
         exit(EXIT_FAILURE);
     }
-    printf("%-3s %2d %7jd   %-40s %d %s  I-node: %ld\n",
+    printf("%-3s %2d %7jd   %-40s %-3d %-10s  I-node: %-7ld\n",
         (tflag == FTW_D) ?   "d"   : (tflag == FTW_DNR) ? "dnr" :
         (tflag == FTW_DP) ?  "dp"  : (tflag == FTW_F) ?   "f" :
         (tflag == FTW_NS) ?  "ns"  : (tflag == FTW_SL) ?  "sl" :
