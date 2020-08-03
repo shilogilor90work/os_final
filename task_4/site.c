@@ -14,30 +14,27 @@ struct stat sb2;
 static int display_info(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)
 {
   // https://linux.die.net/man/2/stat
+  // get also inode data
   if (stat(fpath, &sb2) == -1) {
         perror("stat");
         exit(EXIT_FAILURE);
     }
-    printf("%-3s %2d %7jd   %-40s %-3d %-10s  I-node: %-7ld\n",
-        (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
-        (tflag == FTW_DP) ?  "DP"  : (tflag == FTW_F) ?   "F" :
-        (tflag == FTW_NS) ?  "NS"  : (tflag == FTW_SL) ?  "SL" :
-        (tflag == FTW_SLN) ? "SLN" : "???",
-        ftwbuf->level, (intmax_t) sb->st_size,
-        fpath, ftwbuf->base, fpath + ftwbuf->base, (long) sb2.st_ino);
+    // because in task was asked no printing soft link.
+    if (tflag != FTW_SL)
+    {
+      printf("%-3s I-node: %-7ld %-10s FOR MORE INFO:  %2d %7jd   %-20s %-3d \n",
+          (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
+          (tflag == FTW_DP) ?  "DP"  : (tflag == FTW_F) ?   "F" :
+          (tflag == FTW_NS) ?  "NS"  : (tflag == FTW_SL) ?  "SL" :
+          (tflag == FTW_SLN) ? "SLN" : "???", (long) sb2.st_ino, ftwbuf->base, // for task
+          ftwbuf->level, (intmax_t) sb->st_size, fpath, fpath + ftwbuf->base); // for understanding
+    }
     return 0;           /* To tell nftw() to continue */
 }
 
 int
 main(int argc, char *argv[])
 {
-    int flags = 0;
-
-   if (argc > 2 && strchr(argv[2], 'd') != NULL)
-        flags |= FTW_DEPTH;
-    if (argc > 2 && strchr(argv[2], 'p') != NULL)
-        flags |= FTW_PHYS;
-
    if (nftw(".", display_info, 20, 0) == -1) {
         perror("nftw");
         exit(EXIT_FAILURE);
