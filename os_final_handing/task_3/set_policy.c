@@ -7,7 +7,8 @@
    printf("pid: %d\n", pid);
    // change priority on the struct
    const struct sched_param attr = {
-       .sched_priority = atoi(argv[2])
+       .sched_priority = atoi(argv[2]),
+       .sched_policy = atoi(argv[1])
    };
    // http://www.qnx.com/developers/docs/6.5.0/index.jsp?topic=%2Fcom.qnx.doc.neutrino_lib_ref%2Fs%2Fsched_setscheduler.html
    // change sched policy
