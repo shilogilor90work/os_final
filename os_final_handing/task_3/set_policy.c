@@ -33,23 +33,29 @@ int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
    pid_t pid = getpid();
    printf("pid: %d\n", pid);
    // change priority on the struct
-   const struct sched_param attr = {
+   const struct sched_param attr_param = {
        .sched_priority = atoi(argv[2])
    };
    // http://www.qnx.com/developers/docs/6.5.0/index.jsp?topic=%2Fcom.qnx.doc.neutrino_lib_ref%2Fs%2Fsched_setscheduler.html
    // change sched policy
    if (atoi(argv[1]) != 6)
    {
-     sched_setscheduler(0, atoi(argv[1]), &attr);
+     sched_setscheduler(0, atoi(argv[1]), &attr_param);
    } else
    {
-     struct sched_attr sc_attr = {
-         .sched_policy = atoi(argv[1]),
-         .sched_priority = atoi(argv[2])
-     };
-     pid_t tid = syscall(SYS_gettid);
-     if (sched_setattr(tid, &sc_attr, 0))
-         perror("sched_setattr()");
+     struct sched_attr attr = {
+        .size = sizeof(attr),
+        .sched_policy = SCHED_DEADLINE,
+        .sched_runtime = 30000000,
+        .sched_period = 100000000,
+        .sched_deadline = 100000000
+    };
+
+    pid_t tid = syscall(SYS_gettid);
+
+    if (sched_setattr(tid, &attr, 0))
+        perror("sched_setattr()");
+
    }
    // keep thread alive
    while(1){
