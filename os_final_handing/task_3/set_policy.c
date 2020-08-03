@@ -24,6 +24,10 @@ struct sched_attr {
     uint64_t sched_deadline;
     uint64_t sched_period;
 };
+int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
+{
+   return syscall(__NR_sched_setattr, pid, attr, flags);
+}
  int main(int argc, char* argv[]) {
    // print process id
    pid_t pid = getpid();
@@ -43,7 +47,7 @@ struct sched_attr {
          .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
-     sched_setattr(0, sched_attribute, 0);
+     sched_setattr(0, &sched_attribute, 0);
    }
    // keep thread alive
    while(1){
