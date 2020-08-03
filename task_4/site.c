@@ -26,8 +26,8 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
           (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
           (tflag == FTW_DP) ?  "DP"  : (tflag == FTW_F) ?   "F" :
           (tflag == FTW_NS) ?  "NS"  : (tflag == FTW_SL) ?  "SL" :
-          (tflag == FTW_SLN) ? "SLN" : "???", (long) sb2.st_ino, ftwbuf->base, // for task
-          ftwbuf->level, (intmax_t) sb->st_size, fpath, fpath + ftwbuf->base); // for understanding
+          (tflag == FTW_SLN) ? "SLN" : "???", (long) sb2.st_ino, fpath + ftwbuf->base, // for task
+          ftwbuf->level, (intmax_t) sb->st_size, fpath, ftwbuf->base); // for understanding
     }
     return 0;           /* To tell nftw() to continue */
 }
