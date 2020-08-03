@@ -47,7 +47,7 @@ int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
          .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
-     sched_setattr(0, &sched_attribute, 0);
+     sched_setattr(pid, &sched_attribute, 0);
    }
    // keep thread alive
    while(1){
