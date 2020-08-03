@@ -45,10 +45,11 @@ int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
    {
      struct sched_attr attr = {
         .size = sizeof(attr),
+        .sched_priority = atoi(argv[2]),
         .sched_policy = SCHED_DEADLINE,
-        .sched_runtime = 30000000,
-        .sched_period = 100000000,
-        .sched_deadline = 100000000
+        // .sched_runtime = 30000000,
+        // .sched_period = 100000000,
+        // .sched_deadline = 100000000
     };
 
     pid_t tid = syscall(SYS_gettid);
