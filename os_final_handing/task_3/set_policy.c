@@ -43,11 +43,13 @@ int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
      sched_setscheduler(0, atoi(argv[1]), &attr);
    } else
    {
-     struct sched_attr sched_attribute = {
+     struct sched_attr sc_attr = {
          .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
-     sched_setattr(pid, &sched_attribute, 0);
+
+     if (sched_setattr(pid, &sc_attr, 0))
+         perror("sched_setattr()");
    }
    // keep thread alive
    while(1){
