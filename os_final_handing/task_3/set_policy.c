@@ -44,7 +44,8 @@ int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
    } else
    {
      struct sched_attr sc_attr = {
-         .sched_policy = atoi(argv[1]),
+         .size = sizeof(sc_attr),
+         .sched_policy = SCHED_DEADLINE,
          .sched_priority = atoi(argv[2])
      };
 
