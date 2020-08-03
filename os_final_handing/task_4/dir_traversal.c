@@ -20,7 +20,7 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
         exit(EXIT_FAILURE);
     }
     // because in task was asked no printing soft link.
-    if (tflag != FTW_SL)
+    if (!(tflag == FTW_SL || tflag == FTW_SLN))
     {
       printf("%-3s I-node: %-7ld %-10s FOR MORE INFO:  %2d %7jd   %-20s %-3d \n",
           (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
