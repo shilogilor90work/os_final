@@ -8,21 +8,21 @@
 #include <linux/sched.h>
 #include <sys/types.h>
 struct sched_attr {
-    uint32 size;
+    uint32_t size;
 
-    uint32 sched_policy;
-    uint64 sched_flags;
+    uint32_t sched_policy;
+    uint64_t sched_flags;
 
     /* SCHED_NORMAL, SCHED_BATCH */
-    uint32 sched_nice;
+    int32_t sched_nice;
 
     /* SCHED_FIFO, SCHED_RR */
-    uint32 sched_priority;
+    uint32_t sched_priority;
 
     /* SCHED_DEADLINE (nsec) */
-    uint64 sched_runtime;
-    uint64 sched_deadline;
-    uint64 sched_period;
+    uint64_t sched_runtime;
+    uint64_t sched_deadline;
+    uint64_t sched_period;
 };
  int main(int argc, char* argv[]) {
    // print process id
