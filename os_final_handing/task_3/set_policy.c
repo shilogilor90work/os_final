@@ -2,21 +2,21 @@
 #include <sched.h>
 #include <stdio.h>
 struct sched_attr {
-    uint32_t size;
+    uint32 size;
 
-    uint32_t sched_policy;
-    uint64_t sched_flags;
+    uint32 sched_policy;
+    uint64 sched_flags;
 
     /* SCHED_NORMAL, SCHED_BATCH */
-    int32_t sched_nice;
+    uint32 sched_nice;
 
     /* SCHED_FIFO, SCHED_RR */
-    uint32_t sched_priority;
+    uint32 sched_priority;
 
     /* SCHED_DEADLINE (nsec) */
-    uint64_t sched_runtime;
-    uint64_t sched_deadline;
-    uint64_t sched_period;
+    uint64 sched_runtime;
+    uint64 sched_deadline;
+    uint64 sched_period;
 };
  int main(int argc, char* argv[]) {
    // print process id
