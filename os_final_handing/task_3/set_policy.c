@@ -1,4 +1,4 @@
-#define _POSIX_SOURCE
+
 #include <stdio.h>
 #include <sched.h>
  int main(int argc, char* argv[]) {
