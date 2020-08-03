@@ -1,6 +1,12 @@
 // imports
-#include <sched.h>
+#define _GNU_SOURCE
+#include <stdint.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <sched.h>
+#include <linux/sched.h>
+#include <sys/types.h>
 struct sched_attr {
     uint32 size;
 
