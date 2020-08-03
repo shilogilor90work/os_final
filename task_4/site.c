@@ -9,12 +9,12 @@
 #include <time.h>
 
 
+struct stat sb;
 
 static int
 display_info(const char *fpath, const struct stat *sb,
              int tflag, struct FTW *ftwbuf)
 {
-  struct stat sb;
   if (stat(fpath, &sb) == -1) {
         perror("stat");
         exit(EXIT_FAILURE);
