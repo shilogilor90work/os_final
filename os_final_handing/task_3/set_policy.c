@@ -44,12 +44,11 @@ int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
    } else
    {
      struct sched_attr sc_attr = {
-         .size = sizeof(sc_attr),
-         .sched_policy = SCHED_DEADLINE,
+         .sched_policy = atoi(argv[1]),
          .sched_priority = atoi(argv[2])
      };
-
-     if (sched_setattr(pid, &sc_attr, 0))
+     pid_t tid = syscall(SYS_gettid);
+     if (sched_setattr(tid, &sc_attr, 0))
          perror("sched_setattr()");
    }
    // keep thread alive
