@@ -1,7 +1,6 @@
 // imports
-#include <stdio.h>
 #include <sched.h>
-#include <unistd.h>
+#include <stdio.h>
 struct sched_attr {
     uint32_t size;
 
