@@ -9,13 +9,13 @@
 #include <time.h>
 
 
-struct stat sb;
+struct stat sb2;
 
 static int
 display_info(const char *fpath, const struct stat *sb,
              int tflag, struct FTW *ftwbuf)
 {
-  if (stat(fpath, &sb) == -1) {
+  if (stat(fpath, &sb2) == -1) {
         perror("stat");
         exit(EXIT_FAILURE);
     }
@@ -26,7 +26,7 @@ display_info(const char *fpath, const struct stat *sb,
         (tflag == FTW_SLN) ? "sln" : "???",
         ftwbuf->level, (intmax_t) sb->st_size,
         fpath, ftwbuf->base, fpath + ftwbuf->base);
-    printf("I-node number:            %ld\n", (long) sb.st_ino);
+    printf("I-node number:            %ld\n", (long) sb2.st_ino);
     return 0;           /* To tell nftw() to continue */
 }
 
