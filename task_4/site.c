@@ -19,14 +19,13 @@ display_info(const char *fpath, const struct stat *sb,
         perror("stat");
         exit(EXIT_FAILURE);
     }
-    printf("%-3s %2d %7jd   %-40s %d %s\n",
+    printf("%-3s %2d %7jd   %-40s %d %s  I-node: %ld\n",
         (tflag == FTW_D) ?   "d"   : (tflag == FTW_DNR) ? "dnr" :
         (tflag == FTW_DP) ?  "dp"  : (tflag == FTW_F) ?   "f" :
         (tflag == FTW_NS) ?  "ns"  : (tflag == FTW_SL) ?  "sl" :
         (tflag == FTW_SLN) ? "sln" : "???",
         ftwbuf->level, (intmax_t) sb->st_size,
-        fpath, ftwbuf->base, fpath + ftwbuf->base);
-    printf("I-node number:            %ld\n", (long) sb2.st_ino);
+        fpath, ftwbuf->base, fpath + ftwbuf->base, (long) sb2.st_ino);
     return 0;           /* To tell nftw() to continue */
 }
 
