@@ -15,8 +15,8 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
 {
 
     // because in task was asked no printing soft link.
-    if (!(tflag == FTW_SL || tflag == FTW_SLN))
-    {
+    // if (!(tflag == FTW_SL || tflag == FTW_SLN))
+    // {
       // https://linux.die.net/man/2/stat
       // get also inode data
       if (stat(fpath, &sb2) == -1) {
@@ -29,7 +29,7 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
           (tflag == FTW_NS) ?  "NS"  : (tflag == FTW_SL) ?  "SL" :
           (tflag == FTW_SLN) ? "SLN" : "???", (long) sb2.st_ino, fpath + ftwbuf->base, // for task
           ftwbuf->level, (intmax_t) sb->st_size, fpath, ftwbuf->base); // for understanding
-    }
+    // }
     return 0;           /* To tell nftw() to continue */
 }
 
