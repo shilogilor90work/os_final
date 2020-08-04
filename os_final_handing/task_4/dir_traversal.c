@@ -35,9 +35,18 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
 
 int main(int argc, char *argv[])
 {
-   if (nftw(".", display_info, 20, 0) == -1) {
-        perror("nftw");
-        exit(EXIT_FAILURE);
-    }
-    exit(EXIT_SUCCESS);
+  int flags = 0;
+
+  if (argc > 2 && strchr(argv[2], 'd') != NULL)
+       flags |= FTW_DEPTH;
+   if (argc > 2 && strchr(argv[2], 'p') != NULL)
+       flags |= FTW_PHYS;
+
+  if (nftw((argc < 2) ? "." : argv[1], display_info, 20, flags)
+           == -1) {
+       perror("nftw");
+       exit(EXIT_FAILURE);
+   }
+   exit(EXIT_SUCCESS);
+
 }
