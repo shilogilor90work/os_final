@@ -19,7 +19,8 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
     // {
       // https://linux.die.net/man/2/stat
       // get also inode data
-      if (lstat(fpath, &sb2) != -1) 
+      lstat(fpath, &sb2);
+      if (S_ISLNK(buf.st_mode)) 
             // perror("stat");
       //       exit(EXIT_FAILURE);
       //   }
