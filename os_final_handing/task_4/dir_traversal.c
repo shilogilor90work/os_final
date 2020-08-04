@@ -23,12 +23,15 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
             perror("stat");
             exit(EXIT_FAILURE);
         }
-      printf("%-3s I-node: %-7ld %-10s FOR MORE INFO:  %2d %7jd   %-20s %-3d \n",
-          (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
-          (tflag == FTW_DP) ?  "DP"  : (tflag == FTW_F) ?   "F" :
-          (tflag == FTW_NS) ?  "NS"  : (tflag == FTW_SL) ?  "SL" :
-          (tflag == FTW_SLN) ? "SLN" : "???", (long) sb2.st_ino, fpath + ftwbuf->base, // for task
-          ftwbuf->level, (intmax_t) sb->st_size, fpath, ftwbuf->base); // for understanding
+      if (!S_ISLNK(sb2.st_mode))
+      {
+        printf("%-3s I-node: %-7ld %-10s FOR MORE INFO:  %2d %7jd   %-20s %-3d \n",
+            (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
+            (tflag == FTW_DP) ?  "DP"  : (tflag == FTW_F) ?   "F" :
+            (tflag == FTW_NS) ?  "NS"  : (tflag == FTW_SL) ?  "SL" :
+            (tflag == FTW_SLN) ? "SLN" : "???", (long) sb2.st_ino, fpath + ftwbuf->base, // for task
+            ftwbuf->level, (intmax_t) sb->st_size, fpath, ftwbuf->base); // for understanding
+      }
     // }
     return 0;           /* To tell nftw() to continue */
 }
