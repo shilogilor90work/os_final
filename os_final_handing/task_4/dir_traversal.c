@@ -19,11 +19,11 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
     // {
       // https://linux.die.net/man/2/stat
       // get also inode data
-      if (stat(fpath, &sb2) == -1) {
-            perror("stat");
-            exit(EXIT_FAILURE);
-        }
-      if (!S_ISLNK(sb2.st_mode))
+      if (lstat(fpath, &sb2) != -1) {
+            // perror("stat");
+      //       exit(EXIT_FAILURE);
+      //   }
+      // if (!S_ISLNK(sb2.st_mode))
       {
         printf("%-3s I-node: %-7ld %-10s FOR MORE INFO:  %2d %7jd   %-20s %-3d \n",
             (tflag == FTW_D) ?   "D"   : (tflag == FTW_DNR) ? "DNR" :
