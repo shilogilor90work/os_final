@@ -29,7 +29,7 @@ struct sched_attr {
 // SCHED_OTHER : 0
 // SCHED_FIFO : 1
 // SCHED_RR : 2
-// SCHED_BATCH : 4
+// SCHED_BATCH : 3
 // SCHED_IDLE : 5
 // SCHED_DEADLINE : 6
  int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)

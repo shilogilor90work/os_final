@@ -7,6 +7,7 @@
 #include <sched.h>
 #include <linux/sched.h>
 #include <sys/types.h>
+// for SCHED_DEADLINE
 struct sched_attr {
     uint32_t size;
 
@@ -24,6 +25,7 @@ struct sched_attr {
     uint64_t sched_deadline;
     uint64_t sched_period;
 };
+// for SCHED_DEADLINE
 int sched_setattr(pid_t pid, const struct sched_attr *attr, unsigned int flags)
 {
    return syscall(__NR_sched_setattr, pid, attr, flags);
