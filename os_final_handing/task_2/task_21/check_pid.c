@@ -1,5 +1,6 @@
 #include <errno.h>
 #include<stdio.h>
+#include <signal.h>
 
 int main(int argc,char* argv[])
 {
@@ -11,7 +12,7 @@ int main(int argc,char* argv[])
     if(argc>=2)
     {
       // call kill on the input.
-      status = kill(atoi(argv[1]), 0);
+      status = killpg(atoi(argv[1]), 0);
       // if got warning message
       if (status != 0){
         // no permission warning
